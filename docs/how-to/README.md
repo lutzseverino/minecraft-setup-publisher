@@ -30,3 +30,4 @@ Use the [how-to template](../_templates/how-to.template.md) for new guides.
 
 - [Configure a reverse proxy](configure-reverse-proxy.md)
 - [Configure the login gate](configure-login-gate.md)
+- [Publish a plugin release](publish-a-release.md)

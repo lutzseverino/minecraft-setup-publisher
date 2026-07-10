@@ -85,10 +85,19 @@ MiniMessage; setup and update messages must retain the literal `{code}`
 placeholder. Enforcement additionally requires the loopback HTTP adapter, a
 sanitizing HTTPS reverse proxy, and trustworthy player UUIDs.
 
-Use `/setuppublisher validate` before `/setuppublisher publish`. See the
-[configuration reference](docs/reference/configuration.md) for every key and
-[commands and permissions](docs/reference/commands-and-permissions.md) for the
-operator surface.
+See the [configuration reference](docs/reference/configuration.md) for every
+setting and its default.
+
+## Commands
+
+Administrators use `/setuppublisher status`, `/setuppublisher validate`,
+`/setuppublisher publish`, and `/setuppublisher reload`. Validate a candidate
+manifest before publishing it; publication is the operation that activates its
+new fingerprint for login decisions.
+
+See the
+[commands and permissions reference](docs/reference/commands-and-permissions.md)
+for command behavior and permission nodes.
 
 ## Game And Trust Boundaries
 

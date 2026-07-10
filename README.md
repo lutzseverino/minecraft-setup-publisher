@@ -50,12 +50,8 @@ The packaged plugin is written to `target/MinecraftSetupPublisher-0.1.0.jar`.
 
 ## Documentation
 
-Start with the [documentation index](docs/README.md). It includes a first setup
-tutorial, configuration reference, reverse-proxy guidance, architecture, and the
-login-gate trust boundary.
-
-The repository's versioning policy and compatibility expectations are documented
-in the [versioning reference](docs/reference/versioning.md).
+Start with the [documentation index](docs/README.md). Documentation is organized
+by reader intent so durable guidance has one predictable home.
 
 ## License
 

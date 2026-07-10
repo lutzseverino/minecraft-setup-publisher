@@ -1,0 +1,25 @@
+manifest:
+  source: manifest.json
+  publish-on-start: false
+publication:
+  output: public/manifest.json
+http:
+  enabled: false
+  bind-address: 127.0.0.1
+  port: 8765
+  trust-forwarded-for: false
+gate:
+  mode: 'off'
+  identity-forwarding-trusted: false
+  failure-policy: allow
+  challenge-ttl: 10m
+  bypass-permission: minecraftsetup.bypass
+messages:
+  setup-required: |-
+    This server needs a quick setup before you can join.
+    Open Minecraft Setup Manager, choose this server, and enter code {code}.
+  setup-outdated: |-
+    This server has a setup update.
+    Open Minecraft Setup Manager and enter code {code}.
+  service-unavailable: |-
+    The setup check is temporarily unavailable. Please try again soon.

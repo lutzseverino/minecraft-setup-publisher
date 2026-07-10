@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "manifestVersion": "replace-me",
+  "id": "example-server",
+  "displayName": "Example Server",
+  "server": {
+    "name": "Example Server",
+    "address": "play.example.com"
+  },
+  "minecraft": {
+    "version": "1.20.1",
+    "loader": {
+      "kind": "none"
+    }
+  },
+  "install": {
+    "gameDirectoryName": "Example Server",
+    "launcherProfileName": "Example Server"
+  },
+  "profiles": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "recommendedMemoryMb": 4096
+    }
+  ],
+  "resources": []
+}

@@ -1,0 +1,18 @@
+name: MinecraftSetupPublisher
+version: '${project.version}'
+main: com.lutzseverino.minecraftsetup.bootstrap.MinecraftSetupPublisherPlugin
+api-version: '1.20'
+author: lutzseverino
+description: Publishes declarative client setup and optionally asks players to apply it before joining.
+website: https://github.com/lutzseverino/minecraft-setup-publisher
+commands:
+  setuppublisher:
+    description: Validate, publish, reload, or inspect the current client setup.
+    usage: /setuppublisher <status|validate|publish|reload>
+permissions:
+  minecraftsetup.admin:
+    description: Manage Minecraft Setup Publisher.
+    default: op
+  minecraftsetup.bypass:
+    description: Join without a current setup attestation.
+    default: op

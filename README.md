@@ -54,10 +54,8 @@ Start with the [documentation index](docs/README.md). It includes a first setup
 tutorial, configuration reference, reverse-proxy guidance, architecture, and the
 login-gate trust boundary.
 
-## Versioning
-
-The plugin uses Romantic Versioning. See the
-[versioning reference](docs/reference/versioning.md).
+The repository's versioning policy and compatibility expectations are documented
+in the [versioning reference](docs/reference/versioning.md).
 
 ## License
 

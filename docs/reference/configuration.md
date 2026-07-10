@@ -23,3 +23,8 @@ adapter, login policy, and player-facing messages.
 
 Configured paths are relative to the plugin data directory. Absolute paths and
 paths escaping that directory are rejected.
+
+Player-facing messages support Paper's MiniMessage formatting. The
+`messages.setup-required` and `messages.setup-outdated` values must retain the
+literal `{code}` placeholder; it is replaced with the player's short-lived
+setup code as plain text while the surrounding MiniMessage markup is rendered.

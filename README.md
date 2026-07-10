@@ -1,4 +1,11 @@
-# Minecraft Setup Publisher
+<div align="center">
+  <h1>Minecraft Setup Publisher</h1>
+  <p>Publish and enforce declarative Minecraft client setup requirements from Paper.</p>
+
+  [![CI](https://github.com/lutzseverino/minecraft-setup-publisher/actions/workflows/ci.yml/badge.svg)](https://github.com/lutzseverino/minecraft-setup-publisher/actions/workflows/ci.yml)
+  [![Releases](https://img.shields.io/github/v/release/lutzseverino/minecraft-setup-publisher?include_prereleases)](https://github.com/lutzseverino/minecraft-setup-publisher/releases)
+  [![License: MIT](https://img.shields.io/badge/license-MIT-2f3437)](LICENSE)
+</div>
 
 Minecraft Setup Publisher is a Paper plugin for servers that use
 [Minecraft Setup Manager](https://github.com/lutzseverino/minecraft-setup-manager).

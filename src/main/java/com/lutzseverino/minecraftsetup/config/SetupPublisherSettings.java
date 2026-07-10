@@ -51,9 +51,17 @@ public record SetupPublisherSettings(
 
     public record MessageSettings(String setupRequired, String setupOutdated, String serviceUnavailable) {
         public MessageSettings {
-            setupRequired = requireMessage(setupRequired, "setup-required");
-            setupOutdated = requireMessage(setupOutdated, "setup-outdated");
+            setupRequired = requireSetupMessage(setupRequired, "setup-required");
+            setupOutdated = requireSetupMessage(setupOutdated, "setup-outdated");
             serviceUnavailable = requireMessage(serviceUnavailable, "service-unavailable");
+        }
+
+        private static String requireSetupMessage(String value, String key) {
+            String message = requireMessage(value, key);
+            if (!message.contains("{code}")) {
+                throw new IllegalArgumentException("Message must contain {code}: " + key);
+            }
+            return message;
         }
 
         private static String requireMessage(String value, String key) {

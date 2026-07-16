@@ -7,69 +7,69 @@ import java.time.Duration;
 import java.util.Objects;
 
 public record SetupPublisherSettings(
-        Path manifestSource,
-        boolean publishOnStart,
-        Path publicationOutput,
-        HttpSettings http,
-        GateSettings gate,
-        MessageSettings messages
-) {
-    public SetupPublisherSettings {
-        Objects.requireNonNull(manifestSource, "manifestSource");
-        Objects.requireNonNull(publicationOutput, "publicationOutput");
-        Objects.requireNonNull(http, "http");
-        Objects.requireNonNull(gate, "gate");
-        Objects.requireNonNull(messages, "messages");
+    Path manifestSource,
+    boolean publishOnStart,
+    Path publicationOutput,
+    HttpSettings http,
+    GateSettings gate,
+    MessageSettings messages) {
+  public SetupPublisherSettings {
+    Objects.requireNonNull(manifestSource, "manifestSource");
+    Objects.requireNonNull(publicationOutput, "publicationOutput");
+    Objects.requireNonNull(http, "http");
+    Objects.requireNonNull(gate, "gate");
+    Objects.requireNonNull(messages, "messages");
+  }
+
+  public record HttpSettings(
+      boolean enabled, String bindAddress, int port, boolean trustForwardedFor) {
+    public HttpSettings {
+      Objects.requireNonNull(bindAddress, "bindAddress");
+      if (port < 1 || port > 65535) {
+        throw new IllegalArgumentException("HTTP port must be between 1 and 65535");
+      }
+    }
+  }
+
+  public record GateSettings(
+      GateMode mode,
+      boolean identityForwardingTrusted,
+      FailurePolicy failurePolicy,
+      Duration challengeTtl,
+      String bypassPermission) {
+    public GateSettings {
+      Objects.requireNonNull(mode, "mode");
+      Objects.requireNonNull(failurePolicy, "failurePolicy");
+      Objects.requireNonNull(challengeTtl, "challengeTtl");
+      Objects.requireNonNull(bypassPermission, "bypassPermission");
+      if (bypassPermission.isBlank()) {
+        throw new IllegalArgumentException("Bypass permission cannot be blank");
+      }
+    }
+  }
+
+  public record MessageSettings(
+      String setupRequired, String setupOutdated, String serviceUnavailable) {
+    public MessageSettings {
+      setupRequired = requireSetupMessage(setupRequired, "setup-required");
+      setupOutdated = requireSetupMessage(setupOutdated, "setup-outdated");
+      serviceUnavailable = requireMessage(serviceUnavailable, "service-unavailable");
     }
 
-    public record HttpSettings(boolean enabled, String bindAddress, int port, boolean trustForwardedFor) {
-        public HttpSettings {
-            Objects.requireNonNull(bindAddress, "bindAddress");
-            if (port < 1 || port > 65535) {
-                throw new IllegalArgumentException("HTTP port must be between 1 and 65535");
-            }
-        }
+    private static String requireSetupMessage(String value, String key) {
+      String message = requireMessage(value, key);
+      if (!message.contains("{code}")) {
+        throw new IllegalArgumentException("Message must contain {code}: " + key);
+      }
+      return message;
     }
 
-    public record GateSettings(
-            GateMode mode,
-            boolean identityForwardingTrusted,
-            FailurePolicy failurePolicy,
-            Duration challengeTtl,
-            String bypassPermission
-    ) {
-        public GateSettings {
-            Objects.requireNonNull(mode, "mode");
-            Objects.requireNonNull(failurePolicy, "failurePolicy");
-            Objects.requireNonNull(challengeTtl, "challengeTtl");
-            Objects.requireNonNull(bypassPermission, "bypassPermission");
-            if (bypassPermission.isBlank()) {
-                throw new IllegalArgumentException("Bypass permission cannot be blank");
-            }
-        }
+    private static String requireMessage(String value, String key) {
+      Objects.requireNonNull(value, key);
+      if (value.isBlank()) {
+        throw new IllegalArgumentException("Message cannot be blank: " + key);
+      }
+      return value;
     }
-
-    public record MessageSettings(String setupRequired, String setupOutdated, String serviceUnavailable) {
-        public MessageSettings {
-            setupRequired = requireSetupMessage(setupRequired, "setup-required");
-            setupOutdated = requireSetupMessage(setupOutdated, "setup-outdated");
-            serviceUnavailable = requireMessage(serviceUnavailable, "service-unavailable");
-        }
-
-        private static String requireSetupMessage(String value, String key) {
-            String message = requireMessage(value, key);
-            if (!message.contains("{code}")) {
-                throw new IllegalArgumentException("Message must contain {code}: " + key);
-            }
-            return message;
-        }
-
-        private static String requireMessage(String value, String key) {
-            Objects.requireNonNull(value, key);
-            if (value.isBlank()) {
-                throw new IllegalArgumentException("Message cannot be blank: " + key);
-            }
-            return value;
-        }
-    }
+  }
 }

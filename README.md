@@ -125,7 +125,7 @@ git submodule update --init
 ./mvnw verify
 ```
 
-The packaged plugin is written to `target/MinecraftSetupPublisher-0.1.0.jar`.
+The packaged plugin is written to `target/MinecraftSetupPublisher-<version>.jar`.
 Tagged releases follow Romantic Versioning; see
 [publish a plugin release](docs/how-to/publish-a-release.md).
 

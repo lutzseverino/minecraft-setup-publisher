@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ComplianceRepository {
-    Optional<ComplianceRecord> find(UUID playerId) throws RepositoryException;
+  Optional<ComplianceRecord> find(UUID playerId) throws RepositoryException;
 
-    void save(ComplianceRecord record) throws RepositoryException;
+  void save(ComplianceRecord record) throws RepositoryException;
 }

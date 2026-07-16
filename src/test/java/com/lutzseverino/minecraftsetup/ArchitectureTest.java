@@ -8,26 +8,38 @@ import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
 @AnalyzeClasses(
-        packages = "com.lutzseverino.minecraftsetup",
-        importOptions = ImportOption.DoNotIncludeTests.class
-)
+    packages = "com.lutzseverino.minecraftsetup",
+    importOptions = ImportOption.DoNotIncludeTests.class)
 class ArchitectureTest {
-    @ArchTest
-    static final ArchRule DOMAIN_IS_INWARD_ONLY = noClasses()
-            .that().resideInAPackage("..domain..")
-            .should().dependOnClassesThat().resideInAnyPackage(
-                    "..application..", "..config..", "..infrastructure..", "..platform..", "..bootstrap.."
-            );
+  @ArchTest
+  static final ArchRule DOMAIN_IS_INWARD_ONLY =
+      noClasses()
+          .that()
+          .resideInAPackage("..domain..")
+          .should()
+          .dependOnClassesThat()
+          .resideInAnyPackage(
+              "..application..",
+              "..config..",
+              "..infrastructure..",
+              "..platform..",
+              "..bootstrap..");
 
-    @ArchTest
-    static final ArchRule APPLICATION_OWNS_PORTS = noClasses()
-            .that().resideInAPackage("..application..")
-            .should().dependOnClassesThat().resideInAnyPackage(
-                    "..config..", "..infrastructure..", "..platform..", "..bootstrap.."
-            );
+  @ArchTest
+  static final ArchRule APPLICATION_OWNS_PORTS =
+      noClasses()
+          .that()
+          .resideInAPackage("..application..")
+          .should()
+          .dependOnClassesThat()
+          .resideInAnyPackage("..config..", "..infrastructure..", "..platform..", "..bootstrap..");
 
-    @ArchTest
-    static final ArchRule ADAPTERS_DO_NOT_DEPEND_ON_BOOTSTRAP = noClasses()
-            .that().resideInAnyPackage("..infrastructure..", "..platform..")
-            .should().dependOnClassesThat().resideInAPackage("..bootstrap..");
+  @ArchTest
+  static final ArchRule ADAPTERS_DO_NOT_DEPEND_ON_BOOTSTRAP =
+      noClasses()
+          .that()
+          .resideInAnyPackage("..infrastructure..", "..platform..")
+          .should()
+          .dependOnClassesThat()
+          .resideInAPackage("..bootstrap..");
 }

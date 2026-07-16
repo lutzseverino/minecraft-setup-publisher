@@ -10,19 +10,19 @@ import java.time.ZoneOffset;
 import org.junit.jupiter.api.Test;
 
 class FailedAttemptRateLimiterTest {
-    @Test
-    void oneClientCannotBlockAnotherClient() {
-        FailedAttemptRateLimiter limiter = new FailedAttemptRateLimiter(
-                Clock.fixed(Instant.parse("2026-07-10T00:00:00Z"), ZoneOffset.UTC),
-                2,
-                Duration.ofMinutes(1),
-                100
-        );
+  @Test
+  void oneClientCannotBlockAnotherClient() {
+    FailedAttemptRateLimiter limiter =
+        new FailedAttemptRateLimiter(
+            Clock.fixed(Instant.parse("2026-07-10T00:00:00Z"), ZoneOffset.UTC),
+            2,
+            Duration.ofMinutes(1),
+            100);
 
-        limiter.recordFailure("client-a");
-        limiter.recordFailure("client-a");
+    limiter.recordFailure("client-a");
+    limiter.recordFailure("client-a");
 
-        assertFalse(limiter.permitsAttempt("client-a"));
-        assertTrue(limiter.permitsAttempt("client-b"));
-    }
+    assertFalse(limiter.permitsAttempt("client-a"));
+    assertTrue(limiter.permitsAttempt("client-b"));
+  }
 }

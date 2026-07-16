@@ -14,24 +14,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 class JsonComplianceRepositoryTest {
-    @TempDir
-    Path temporaryDirectory;
+  @TempDir Path temporaryDirectory;
 
-    @Test
-    void exposesAWriteFailureToLaterLoginReads() throws Exception {
-        Path fileAsParent = temporaryDirectory.resolve("not-a-directory");
-        Files.writeString(fileAsParent, "blocked");
-        JsonComplianceRepository repository = new JsonComplianceRepository(
-                fileAsParent.resolve("compliance.json")
-        );
-        ComplianceRecord record = new ComplianceRecord(
-                UUID.randomUUID(),
-                new ManifestFingerprint("msm-v1-sha256:" + "a".repeat(64)),
-                new ProfileId("standard"),
-                Instant.parse("2026-07-10T00:00:00Z")
-        );
+  @Test
+  void exposesAWriteFailureToLaterLoginReads() throws Exception {
+    Path fileAsParent = temporaryDirectory.resolve("not-a-directory");
+    Files.writeString(fileAsParent, "blocked");
+    JsonComplianceRepository repository =
+        new JsonComplianceRepository(fileAsParent.resolve("compliance.json"));
+    ComplianceRecord record =
+        new ComplianceRecord(
+            UUID.randomUUID(),
+            new ManifestFingerprint("msm-v1-sha256:" + "a".repeat(64)),
+            new ProfileId("standard"),
+            Instant.parse("2026-07-10T00:00:00Z"));
 
-        assertThrows(RepositoryException.class, () -> repository.save(record));
-        assertThrows(RepositoryException.class, () -> repository.find(record.playerId()));
-    }
+    assertThrows(RepositoryException.class, () -> repository.save(record));
+    assertThrows(RepositoryException.class, () -> repository.find(record.playerId()));
+  }
 }

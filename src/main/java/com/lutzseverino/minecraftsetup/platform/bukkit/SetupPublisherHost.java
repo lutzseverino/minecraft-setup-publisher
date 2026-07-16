@@ -7,17 +7,17 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 public interface SetupPublisherHost {
-    SetupPublisherSettings settings();
+  SetupPublisherSettings settings();
 
-    LoginGateDecision decideLogin(UUID playerId, boolean bypass);
+  LoginGateDecision decideLogin(UUID playerId, boolean bypass);
 
-    ManifestSnapshot validateManifest() throws Exception;
+  ManifestSnapshot validateManifest() throws Exception;
 
-    ManifestSnapshot publishManifest() throws Exception;
+  ManifestSnapshot publishManifest() throws Exception;
 
-    ManifestSnapshot currentManifest() throws Exception;
+  ManifestSnapshot currentManifest() throws Exception;
 
-    void reloadRuntime() throws Exception;
+  void reloadRuntime() throws Exception;
 
-    Logger logger();
+  Logger logger();
 }

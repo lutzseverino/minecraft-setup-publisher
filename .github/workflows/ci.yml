@@ -28,7 +28,7 @@ jobs:
         with:
           cache: maven
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
       - name: Verify
         run: ./mvnw --batch-mode --no-transfer-progress verify

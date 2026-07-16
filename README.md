@@ -118,7 +118,8 @@ fail-closed behavior only with that operational tradeoff understood.
 
 ## Development
 
-The project targets Java 17 and Paper 1.20.1 or newer.
+The plugin targets Java 17 and Paper 1.20.1 or newer. Builds require JDK 21 so
+the pinned formatter can run while Maven emits Java 17-compatible bytecode.
 
 ```bash
 git submodule update --init

@@ -30,7 +30,7 @@ jobs:
         with:
           cache: maven
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
       - name: Validate release version
         id: version

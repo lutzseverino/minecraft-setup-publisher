@@ -1,8 +1,11 @@
 {
-  "standards-version": 1,
-  "standards-release": "1.0.3",
+  "standards-version": 2,
+  "standards-release": "1.1.0",
   "profiles": ["common", "documentation", "paper-plugin"],
   "variables": {},
+  "boundaries": [
+    {"path": ".", "type": "repository", "title": "Minecraft Setup Publisher"}
+  ],
   "local-fragments": {},
   "repository-owned": [
     "README.md",

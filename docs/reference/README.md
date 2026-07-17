@@ -14,7 +14,6 @@ Reference documents are factual and lookup-oriented.
 ## Do Not Use This Section For
 
 - rationale-heavy architecture discussion; use [Explanation](../explanation/README.md)
-- decisions and rejected alternatives; use [Decisions](../decisions/README.md)
 - task procedures; use [How-To Guides](../how-to/README.md)
 - temporary notes that are not intended as durable documentation
 
